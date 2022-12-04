@@ -1,0 +1,49 @@
+﻿@model BookStore2.ViewModel.BooksAuthorViewModel
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>BooksAuthorViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="book.id" class="control-label"></label>
+                <input asp-for="book.id" class="form-control" />
+                <span asp-validation-for="book.id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="book.title" class="control-label"></label>
+                <input asp-for="book.title" class="form-control" />
+                <span asp-validation-for="book.title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="book.description" class="control-label"></label>
+                <input asp-for="book.description" class="form-control" />
+                <span asp-validation-for="book.description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="book.author.fullName" class="control-label"></label>
+                <select asp-for="book.author.id" asp-items="@(new SelectList(Model.authors , "id" , "fullName"))"></select>
+                <span asp-validation-for="book.author.id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
